@@ -4,9 +4,10 @@ import { Counter, LoginCard, SearchBox } from './state'
 import { UserDashboard, SimpleCounter, PrevStateCounter, BachingCounter, Toggle } from './hooks'
 import { UserProfile, ToDoList } from './state-obj-array'
 import { ShoppingCart } from './share-state'
-import { Count, SearchInput, UserForm, Countering } from './useEffect-useRef'
+import { Count, SearchInput, UserForm, Countering, PrevValue, RefVariable } from './useEffect-useRef'
 import { StudentManagement } from '../Mini-Tasks/mini-task-phase-3'
 import { AddSubCounter } from './useEffect-useRef'
+import { Controlled, Uncontrolled } from './controlled-component'
 
 function App() {
     return (
@@ -35,6 +36,10 @@ function App() {
             <UserForm />
             <Countering />
             <AddSubCounter />
+            <Controlled/>
+            <Uncontrolled/>
+            <PrevValue/>
+            <RefVariable/>
         </div>
     )
 }

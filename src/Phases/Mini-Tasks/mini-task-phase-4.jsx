@@ -24,10 +24,12 @@ export const ShoppingCart = () => {
         <div className="p-2 m-2 border border-gray-200 rounded-md shadow-md bg-white">
             <h2 className="m-2 text-xl font-semibold pb-2 border-b border-gray-300">Shopping Cart</h2>
             <div className="flex flex-col gap-2 p-2">
-                {cart_items.length > 0 && (
+                {cart_items.length > 0 ? (
                     cart_items.map(item => <CartItem key={item.id} item={item} handle_decrement={decrement} handle_increment={increment} handle_delete={delete_item} />)
+                ) : (
+                    <h3>No items in cart</h3>
                 )}
-                <h3>No items in cart</h3>
+                
             </div>
             <div className="flex justify-between items-center text-lg py-2 mx-2 font-bold border-t border-gray-300">
                 <p className="ms-3">Total Price</p>

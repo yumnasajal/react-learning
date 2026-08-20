@@ -102,3 +102,36 @@ export function AddSubCounter() {
         </div>
     );
 }
+
+export const PrevValue = () => {
+    const [count, setCount] = useState(0);
+    const prevCount = useRef();
+    useEffect(() => {
+        prevCount.current = count;
+    } ,[count])
+    return (
+        <div>
+            <p>Current: {count}</p>
+            <p>Previous: {prevCount.current}</p>
+            <button onClick={() => setCount(count + 1)}>Increamse</button>
+        </div>
+    )
+}
+
+//useRef presisits between renders
+export const RefVariable = () => {
+    const [count, setCount] = useState(0);
+    let normal_varaible = 0;
+    const ref = useRef(0);
+    normal_varaible++;
+    ref.current++;
+    console.log(normal_varaible);
+    console.log(ref.current)
+    return (
+        <div>
+            <p>Normal: {normal_varaible}</p>
+            <p>Ref: {ref.current}</p>
+            <button onClick={() => setCount(count+ 1)}>Re-render</button>
+        </div>
+    )
+}
