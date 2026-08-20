@@ -1,8 +1,14 @@
-import { Product, CarProducts, UserCard, CardWrapper } from './props'
+import { Product, CarProducts, UserCard, CardWrapper, Badges } from './props'
+import { Home } from './components';
+import { DeleteConfirmation } from './children';
+import { ProductsComp } from '../Mini-Tasks/mini-task-phase-2';
 
 function App() {
     return (
         <div>
+            <div>
+                <ProductsComp />
+            </div>
             <div>
                 <CarProducts
                     title="Iphone 18 Pro Max"
@@ -21,6 +27,11 @@ function App() {
                 <p>batman@gmail.com</p>
                 <button>Click here to edit Profile</button>
             </CardWrapper>
+            <Home />
+            <DeleteConfirmation />
+            <Badges />
         </div>
     )
 }
+
+export default App;

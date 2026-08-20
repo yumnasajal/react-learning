@@ -1,7 +1,7 @@
 import './App.css'
-import Phase1 from './Phases/Phase-1/App';
+import Phase from './Phases/Mini-Tasks/App';
 
-function App () {
-    return <Phase1/>;
+function App() {
+    return <Phase />;
 }
 export default App;

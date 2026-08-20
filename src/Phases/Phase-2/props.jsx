@@ -68,3 +68,18 @@ export const CardWrapper = ({title, children}) => {
         </div>
     )
 }
+
+const Badge = ({text, color}) => {
+    return(
+        <button className={color}>{text}</button>
+    )
+}
+
+export const Badges = () => {
+    return(
+        <>
+            <Badge text="Success" color="text-white bg-green-500 p-2 hover:scale-105"/>
+            <Badge text="Danger" color="text-white bg-red-500 p-2 hover:scale-105"/>
+        </>
+    )
+}
