@@ -1,0 +1,78 @@
+import { useMemo, useState } from "react"
+import airbudsImage from "../../assets/AirbudSignatureS680-Image-4_4_copy.webp";
+import gameConsoleImage from "../../assets/PS5_Pr-Plus_1.webp";
+import laptopImage from "../../assets/czone-20260718123615-87161-0-180726123616838.webp";
+import mobilePhone from '../../assets/pixel-7-pro.webp'
+import headphonesImage from '../../assets/Ldnio-H01-Black.webp'
+
+const products = [
+    { id: 1, name: 'Mobile Phone', price: 60000, inStock: true, image: mobilePhone },
+    { id: 2, name: 'Video Game Console', price: 40000, inStock: true, image: gameConsoleImage },
+    { id: 3, name: 'Laptop', price: 80000, inStock: true, image: laptopImage },
+    { id: 4, name: 'Headphones', price: 6000, inStock: true, image: headphonesImage },
+    { id: 5, name: 'Air Buds', price: 50000, inStock: true, image: airbudsImage },
+    { id: 6, name: "Pixel 7 Pro - Black", price: 62000, inStock: true, image: mobilePhone },
+    { id: 7, name: "PS5 Plus Edition", price: 45000, inStock: true, image: gameConsoleImage },
+    { id: 8, name: "Gaming Laptop", price: 125000, inStock: true, image: laptopImage },
+    { id: 9, name: "Wireless Headphones", price: 7500, inStock: true, image: headphonesImage },
+    { id: 10, name: "AirBuds Pro", price: 55000, inStock: false, image: airbudsImage },
+    { id: 11, name: "Pixel 7 Pro 128GB", price: 65000, inStock: true, image: mobilePhone },
+    { id: 12, name: "PlayStation 5", price: 145000, inStock: true, image: gameConsoleImage },
+    { id: 13, name: "Core i7 Laptop", price: 180000, inStock: false, image: laptopImage },
+    { id: 14, name: "Ldnio Wireless Headset", price: 8500, inStock: true, image: headphonesImage },
+    { id: 15, name: "AirBuds Signature", price: 48000, inStock: true, image: airbudsImage },
+    { id: 16, name: "Google Pixel Smartphone", price: 70000, inStock: true, image: mobilePhone },
+    { id: 17, name: "PS5 Gaming Console", price: 150000, inStock: false, image: gameConsoleImage },
+    { id: 18, name: "Performance Laptop", price: 220000, inStock: true, image: laptopImage },
+    { id: 19, name: "Premium Headphones", price: 10000, inStock: true, image: headphonesImage },
+    { id: 20, name: "AirBuds S680", price: 52000, inStock: true, image: airbudsImage }
+]
+
+const ProductList = ({products, search_term}) => {
+    const filtered_products = useMemo(() => {
+        console.log('Filtering ran');
+        return products.filter(p => p.name.toLowerCase().includes(search_term.toLowerCase()))
+    }, [products, search_term]);
+    return (
+        <div>
+            <h2>Products List</h2>
+            <p>
+                {filtered_products.length} results
+            </p>
+            <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                {filtered_products.map(product =>
+                    <ProductCard key={product.id} product={product} />
+                )}
+            </div>
+
+        </div>
+    )
+}
+
+const ProductCard = ({ product }) => {
+    return (
+        <div className="border-gray-100 w-64 rounded-lg border bg-white flex flex-col gap-1 p-4 shadow-md hover:border-gray-200 hover:shadow-lg transition-all">
+            <img src={product.image} alt={product.name} />
+            <h2 className="font-bold">{product.name}</h2>
+            <p className="font-semibold">Price: Rs. {product.price}</p>
+            <div className="flex justify-between items-center">
+                <p className="text-gray-700">{product.inStock ? 'In Stock' : 'Out of Stock'}</p>
+                <button className="py-1 px-3 bg-orange-600 rounded-lg text-white text-sm shadow-md hover:shadow-lg hover:scale-103 transition-all">Add to Cart</button>
+            </div>
+        </div>
+    )
+}
+
+export const SearchProducts = () => {
+    const [searchTerm, setSearchTerm] = useState('');
+    return (
+        <div className="p-6">
+            <input type="text" placeholder="Search for products" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="ml-2 border" />
+            <ProductList products={products} search_term={searchTerm}/>
+        </div>
+    )
+}
+
+// Task 2 — useMemo. Build a component with a list of ~20 numbers and a text input. Filter the list to only numbers whose string representation includes the typed text 
+// (e.g., typing "1" shows 1, 10-19, 21, etc.). Wrap the filtering logic in useMemo, and add a console.log inside it — type in an unrelated second input on the same page 
+// (that also triggers a re-render) and confirm the filter log does NOT fire again, proving the memoization works.
